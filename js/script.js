@@ -1,6 +1,7 @@
 var festivals = {}
 festivals.todayDate = (new Date()).toJSON().split('').slice(0, 10).join('');
-festivals.thumbImagesUrl = 'http://app.toronto.ca';
+festivals.imagesUrl = 'http://app.toronto.ca';
+festivals.eventsArray = [];
 festivals.features = {
 	'Paid Parking' : '',
 	'Onsite Food and Beverages': '',
@@ -8,7 +9,6 @@ festivals.features = {
 	'Public Washrooms': '',
 	'Bike Racks': ''
 }
-
 $(function(){
 	festivals.init();
 });
@@ -36,53 +36,68 @@ festivals.getItemsToDisplayData = function(res){
 	var counter = 0;
 	res.forEach(function(e){
 		var event = e.calEvent;
-		var datesArray = event.dates;
+		var datesArray = event.dates; // array of dates in calEvent
+
 		datesArray.forEach(function(date){
-			if( date.hasOwnProperty('startDateTime') ){
+			if ( date.hasOwnProperty('startDateTime') ){
 				var eventDate = (date.startDateTime).split('')
 													.slice(0, 10)
 													.join('');
-				if(festivals.todayDate === eventDate){
-					var eventName = event.eventName;
-					var isFree = event.freeEvent;
-					var cost = event.otherCostInfo;
-					var longEventDescription = event.description;
-					var shortEventDescription = longEventDescription.split(' ')
-																	.slice(0, 15)
-																	.join(' ') + '...';
-					var accessibility = event.accessibility;
+//checks to see whether event date matches todays date
+				if (festivals.todayDate === eventDate){
 					var features = event.features;
 					var featuresArray = [];
-					var categories = event.categoryString;
-					if(event.image !== undefined){
-						var thumbImage = event.image.url;
-					}
-					counter++;
-					console.log(counter);
-					console.log(eventName);
-					// console.log('Cost: ' + event.otherCostInfo);
+					var image;
 					for(var feature in features){
 						if(features[feature])
-							featuresArray.push(feature);
+							featuresArray.push(feature); //inserting the feature in the featureArray
 					}
-					console.log(categories);
-					console.log(featuresArray);
-					console.log(thumbImage);
-					festivals.displayToIndex(thumbImage, eventName, isFree, cost, shortEventDescription, featuresArray, accessibility, categories)
+
+					if(event.image !== undefined){
+						image = festivals.imagesUrl + event.image.url;
+					} else{
+						image = '../assets/toronto.jpeg';
+					}
+					console.log(image);
+					festivals.eventsArray.push({
+						id: counter,
+						accessibility: event.accessibility,
+						categories: event.categoryString,
+						cost: event.otherCostInfo,
+						endDate: event.endDate.split('')
+											  .slice(0, 10)
+											  .join(''),
+						eventName: event.eventName,
+						eventWebsite: event.eventWebsite,
+						features: featuresArray,
+						image: image,
+						isFree: event.freeEvent,
+						location: event.locations[0].locationName,
+						address: event.locations[0].address,
+						longEventDescription: event.description,
+						phone: event.orgPhone,
+						shortEventDescription: event.description.split(' ')
+																   .slice(0, 15)
+																   .join(' ') + '...',
+						startDate: event.startDate.split('')
+												  .slice(0, 10)
+												  .join(''),										 
+					});
+
+					festivals.displayOnHtml(festivals.eventsArray[counter], counter);
+					counter++;
+					console.log(counter);
 				} 
 			}
 		});
 	});
 }
 
-festivals.displayToIndex = function(thumbImage, eventName, isFree, cost, shortEventDescription, featuresArray, accessibility, categories){
-	var image = $('<img>').attr({
-		src: `${festivals.thumbImagesUrl + thumbImage}`,
-		alt: 'Event thumbnail'
-	}).css('width', '200px');
-	var titleElement = $('<h2>').html(eventName);
-	var dateElement = $('<p>').html(festivals.todayDate);
-	var isFreeElement = $('<p>').html(`Free: ${isFree}`);
-	var shortEventDescriptionElement = $('<p>').html(shortEventDescription);
-	$('main').append(image, titleElement, dateElement, isFreeElement, shortEventDescriptionElement);
+
+festivals.displayOnHtml = function(festivalsObject, counter){
+	var eventTemplate = $('#event').html();
+	var compileEventTemplate = Handlebars.compile(eventTemplate);
+	var finalTemplate = compileEventTemplate(festivalsObject);
+	$('ul').append(finalTemplate);
+	$('h2 span').text(counter + 1);
 }

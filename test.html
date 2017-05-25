@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Page</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<style>
+		ul{
+			list-style-type: none;
+		}
+	</style>
+		
+</head>
+<body>
+	<script id="template" type="text/x-handlebars-template">
+	    <div>
+	        <h2>{{name}}</h2>
+	        <ul>
+	        {{#each course}}
+	            <li>{{this}}</li>
+	        {{/each}}
+	        </ul>
+	    </div>
+	</script>
+
+	<script>
+		var myTemplate = $('#template').html();
+		var template = Handlebars.compile(myTemplate);
+
+		var student = {
+		    name: 'Joe Smith',
+		    course: ['Bootcamp', 'Part Time Ruby on Rails', 'Javascript'],
+		    photo: null,
+		    age: 27
+		}
+		var studentTemplate = template(student);
+
+		$('body').html(studentTemplate);
+
+	</script>
+</body>
+</html>

@@ -3,14 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Project04</title>
+	<link rel="stylesheet" href="css/style.css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+	<script id="event" type="text/x-handlebars-template">
+		<li class="event-container">
+			<div class="event-image" style="background-image: url('{{image}}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+			</div>
+			<div class="event-content">
+				<h3>{{eventName}}</h3>
+				<p>{{shortEventDescription}}</p>
+			</div>
+		</li>
+	</script>
+	
 </head>
 <body>
-	<main></main>
-	
-
+	<h2>There are <span></span> events happening today!</h2>
+	<main class="wrapper">
+		<ul></ul>
+	</main>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
