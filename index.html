@@ -11,18 +11,84 @@
 			<div class="event-image" style="background-image: url('{{image}}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
 			</div>
 			<div class="event-content">
-				<h3>{{eventName}}</h3>
+				<h3 data-id="{{id}}">
+					<a href="#">{{eventName}}</a>
+				</h3>
 				<p>{{shortEventDescription}}</p>
 			</div>
 		</li>
+	</script>
+
+	<script id="eventModal" type="text/x-handlebars-template">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h4>Toronto Festivals and Events</h4>
+			<h3>{{eventName}}</h3>
+			<p>{{longEventDescription}}</p>
+			<div class="event-date">
+				<h4>When:</h4>
+				<p>{{startDate}} to {{endDate}}</p>
+			</div>
+			<div class="event-location">
+				<h4>Where:</h4>
+				<p>{{location}}</p>
+				<p>{{address}}</p>
+			</div>
+			<div class="event-cost">
+				<h4>Free: </h4>
+				<p>{{isFree}}</p>
+			</div>
+			<div class="contact">
+				<h4>Phone: </h4>
+				<p>{{phone}}</p>
+				<h4>Website: </h4>
+				<p>{{website}}</p>
+				<h4>Email:</h4>
+				<p>{{email}}</p>
+			</div>
+		</div>
 	</script>
 	
 </head>
 <body>
 	<h2>There are <span></span> events happening today!</h2>
+	<form>
+		<input type="checkbox" id="free">
+		<label for="free">Free</label>
+
+		<input type="checkbox" id="accessible">
+		<label for="accessible">Accessible Venues</label>
+
+		<input type="checkbox" id="paid-parking">
+		<label for="paid-parking">Paid Parking</label>
+
+		<input type="checkbox" id="free-parking">
+		<label for="free-parking">Free Parking</label>
+
+		<input type="checkbox" id="food">
+		<label for="food">Onsite Food and Beverages</label>
+
+		<input type="checkbox" id="washrooms">
+		<label for="washrooms">Public Washrooms</label>
+
+		<input type="checkbox" id="bike-racks">
+		<label for="bike-racks">Bike Racks</label>
+
+		<input type="submit" value="Submit">
+	</form>
 	<main class="wrapper">
-		<ul></ul>
+		<ul>
+			<!-- Event list goes here -->
+		</ul>
 	</main>
+
+	<div id="myModal" class="modal">
+		
+		
+		<!-- Modal content goes here -->
+	  	
+	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="js/script.js"></script>
