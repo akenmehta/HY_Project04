@@ -1,6 +1,6 @@
 var festivals = {}
 festivals.todayDate = (new Date()).toJSON().split('').slice(0, 10).join('');
-festivals.imagesUrl = 'http://app.toronto.ca';
+const imagesUrl = 'http://app.toronto.ca';
 festivals.eventsArray = [];
 festivals.finalArray = [];
 festivals.features = {
@@ -18,6 +18,7 @@ $(function(){
 festivals.init = function(){
 	festivals.getData();
 	festivals.displayModal();
+	festivals.form();
 }
 
 //getting data from api
@@ -50,17 +51,13 @@ festivals.getItemsToDisplayData = function(res){
 				
 				//checks to see whether event date matches todays date
 				if(festivals.todayDate === eventDate){
-					var features = event.features;
-					var featuresArray = [];
+					var featuresArray = festivals.eventFeatures(event.accessibility, event.features);
 					var image;
+					var isFree = festivals.isFree(event.freeEvent);
 
-					for(var feature in features){
-						if(features[feature])
-							featuresArray.push(feature); //inserting the feature in the featureArray
-					}
 					// check for image and if no image is found, pass the placeholder
 					if(event.image !== undefined){
-						image = festivals.imagesUrl + event.image.url;
+						image = imagesUrl + event.image.url;
 					} else{
 						image = './assets/toronto.jpg';
 					}
@@ -79,7 +76,7 @@ festivals.getItemsToDisplayData = function(res){
 						website: event.eventWebsite,
 						features: featuresArray,
 						image: image,
-						isFree: event.freeEvent,
+						isFree: isFree,
 						location: event.locations[0].locationName,
 						address: event.locations[0].address,
 						longEventDescription: event.description,
@@ -113,7 +110,7 @@ festivals.getItemsToDisplayData = function(res){
 						website: event.eventWebsite,
 						features: featuresArray,
 						image: image,
-						isFree: event.freeEvent,
+						isFree: isFree,
 						location: event.locations[0].locationName,
 						address: event.locations[0].address,
 						longEventDescription: event.description,
@@ -131,9 +128,43 @@ festivals.getItemsToDisplayData = function(res){
 						counter++;
 					}
 				} // if statement checking todays date and event date
-			}
+			} // if statement to check if startDateTime exists in the events object
 		});
 	});
+}
+festivals.isFree = function(free){
+	let isFree;
+	if( free === 'Yes' )
+		isFree = 'Free';
+	else
+		isFree = '$$';
+
+	return isFree;
+}
+//grab features from the features object
+festivals.eventFeatures = function(accessibility, features){
+	var finalFeaturesArray = [];
+	var featuresArray = [];
+
+	if( accessibility === 'full')
+		finalFeaturesArray.push('fa-wheelchair-alt');
+
+	for(var feature in features){
+		if(features[feature])
+			featuresArray.push(feature); //inserting the feature in the featureArray
+	}
+
+	featuresArray.forEach(function(event){
+		if(event === 'Bike Racks')
+			finalFeaturesArray.push('fa-bicycle');
+		else if(event === 'Public Washrooms')
+			finalFeaturesArray.push('fa-shower');
+		else if(event === 'Onsite Food and Beverages')
+			finalFeaturesArray.push('fa-cutlery');
+		else if(event === 'Paid Parking')
+			finalFeaturesArray.push('fa-product-hunt');
+	});
+	return finalFeaturesArray;
 }
 
 //displays content to the display page using handlebars
@@ -141,7 +172,7 @@ festivals.displayOnHtml = function(festivalsObject){
 	var eventTemplate = $('#event').html();
 	var compileEventTemplate = Handlebars.compile(eventTemplate);
 	var finalTemplate = compileEventTemplate(festivalsObject);
-	$('ul').append(finalTemplate);
+	$('.main-content').append(finalTemplate);
 	$('h2 span').text(festivals.eventsArray.length);
 }
 
@@ -179,3 +210,9 @@ festivals.displayModal = function(){
 		});
 	});
 }
+
+festivals.form = function(){
+	console.log('form');
+}
+
+

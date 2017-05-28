@@ -25,10 +25,17 @@ ul, li{
 .event-image img{
 	width: 100%;
 }
-ul{
+ul.main-content{
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+}
+ul.features{
+	display: flex;
+}
+ul.features li i{
+	padding: 8px;
+	font-size: 18px;
 }
 .event-container{
 	width: 33.33%;

@@ -14,8 +14,16 @@
 				<h3 data-id="{{id}}">
 					<a href="#">{{eventName}}</a>
 				</h3>
+				<p>{{isFree}}</p>
 				<p>{{shortEventDescription}}</p>
 			</div>
+			<ul class="features">
+				{{#each features}}
+				<li>
+					<i class=" fa {{this}}" aria-hidden="true"></i>
+				</li>
+				{{/each}}
+			</ul>
 		</li>
 	</script>
 
@@ -25,6 +33,14 @@
 			<h4>Toronto Festivals and Events</h4>
 			<h3>{{eventName}}</h3>
 			<p>{{longEventDescription}}</p>
+			<p>{{categories}}</p>
+			<ul class="features">
+				{{#each features}}
+				<li>
+					<i class=" fa {{this}}" aria-hidden="true"></i>
+				</li>
+				{{/each}}
+			</ul>
 			<div class="event-date">
 				<h4>When:</h4>
 				<p>{{startDate}} to {{endDate}}</p>
@@ -35,7 +51,7 @@
 				<p>{{address}}</p>
 			</div>
 			<div class="event-cost">
-				<h4>Free: </h4>
+				<h4>Cost: </h4>
 				<p>{{isFree}}</p>
 			</div>
 			<div class="contact">
@@ -62,9 +78,6 @@
 		<input type="checkbox" id="paid-parking">
 		<label for="paid-parking">Paid Parking</label>
 
-		<input type="checkbox" id="free-parking">
-		<label for="free-parking">Free Parking</label>
-
 		<input type="checkbox" id="food">
 		<label for="food">Onsite Food and Beverages</label>
 
@@ -77,7 +90,7 @@
 		<input type="submit" value="Submit">
 	</form>
 	<main class="wrapper">
-		<ul>
+		<ul class="main-content">
 			<!-- Event list goes here -->
 		</ul>
 	</main>
