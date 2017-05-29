@@ -248,7 +248,7 @@ festivals.header = function(){
 	setInterval(change, 3000);
 	function change(){
 		$('h1 span').text(text[counter]);
-		$('h1 span').addClass('animated infinite fadeIn');
+		$('h1 span').addClass('animated infinite fadeOut');
 
 		counter++;
 		if(counter >= text.length)
