@@ -34,7 +34,6 @@ body{
 	width: 300px;
 	display: inline-block;
 	-webkit-animation-duration: 3s;
-	border: 1px solid red;
 }
 a:visited{
   color: inherit;
@@ -66,12 +65,24 @@ ul.features li i{
 	margin: 10px;
 	padding: 20px;
 	background-color: #FBFcfd;
+	transition: all 1s;
+}
+.event-container:hover{
+	box-shadow: 5px 5px 25px #869FE8;
 }
 .event-container h3{
 	color: #5F7FE6;;
 }
 form{
 	margin: 20px 0;
+}
+input[type=submit]{
+	background-color: #5F7FE6;
+	border: none;
+	padding: 2px 15px;
+	margin-left: 10px;
+	color: #fff;
+	box-shadow: 2px 2px 5px #869FE8;
 }
 .modal {
     display: none; 
@@ -103,7 +114,6 @@ form{
 	color: #fff;
 	padding: 10px;
 }
-
 /* The Close Button */
 .close {
     color: #aaaaaa;
@@ -111,7 +121,6 @@ form{
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: #000;
@@ -119,3 +128,34 @@ form{
     cursor: pointer;
 }
 
+@media (max-width: 900px) {
+	.event-container{
+	width: calc(50% - 20px);
+	}
+	.modal-content {
+    width: 70%;
+	}
+}
+@media (max-width: 640px) {
+	.header{
+		font-size: 20px;
+	}
+	.header span{
+		width: 200px;
+	}
+}
+
+@media (max-width: 548px) {
+	.event-container{
+	width: calc(90% - 20px);
+	}
+	.modal-content {
+    width: 85%;
+	}
+	.header{
+		font-size: 15px;
+	}
+	.header span{
+		width: 150px;
+	}
+}
