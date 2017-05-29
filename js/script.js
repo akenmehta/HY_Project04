@@ -16,9 +16,11 @@ $(function(){
 
 // initializing the functions on load
 festivals.init = function(){
+	festivals.header();
 	festivals.getData();
 	festivals.displayModal();
 	festivals.form();
+	festivals.headerScroll();
 }
 
 //getting data from api
@@ -211,8 +213,58 @@ festivals.displayModal = function(){
 	});
 }
 
+//gets user input
 festivals.form = function(){
-	console.log('form');
+	$('form').on('submit', function(e){
+		e.preventDefault();
+		var val = [];
+        $(':checkbox:checked').each(function(i){
+          val[i] = $(this).val();
+        });
+        var test = festivals.filteredArray(val)
+	});
 }
 
 
+festivals.filteredArray = function(val){
+	var filteredArray = [];
+	var formValue = val[0];
+	var test =  festivals.eventsArray[0]
+		// console.log(formValue);
+		// console.log(test.features[0]);
+		// console.log( test.features[0] === val[0] );
+	filteredArray = festivals.eventsArray.filter(function(event){
+			return ( event.features.forEach(function(feature){
+				return( feature == val[0] );
+			})
+		);
+	});
+	console.log(filteredArray);
+}
+
+festivals.header = function(){
+	var text = ['EVENTS', 'FESTIVALS'];
+	var counter = 0;
+	setInterval(change, 3000);
+	function change(){
+		$('h1 span').text(text[counter]);
+		$('h1 span').addClass('animated infinite fadeIn');
+
+		counter++;
+		if(counter >= text.length)
+			counter = 0;
+	}
+}
+
+festivals.headerScroll = function(){
+	$(window).on("scroll", function(e) {
+		if ($(window).scrollTop() ) {
+			$(".header").fadeOut(500);
+			$(".main").css('margin-top', '150px');
+		}
+		else {
+			$(".header").fadeIn(500);
+			$(".main").css('margin-top', '250px');
+		}
+	});
+}

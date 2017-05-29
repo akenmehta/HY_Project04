@@ -3,8 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Project04</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="css/style.css">
 
 	<script id="event" type="text/x-handlebars-template">
 		<li class="event-container">
@@ -42,59 +44,57 @@
 				{{/each}}
 			</ul>
 			<div class="event-date">
-				<h4>When:</h4>
-				<p>{{startDate}} to {{endDate}}</p>
+				<p><span>When: </span>{{startDate}} to {{endDate}}</p>
 			</div>
 			<div class="event-location">
-				<h4>Where:</h4>
-				<p>{{location}}</p>
+				<p><span>Where: </span>{{location}}</p>
 				<p>{{address}}</p>
 			</div>
 			<div class="event-cost">
-				<h4>Cost: </h4>
-				<p>{{isFree}}</p>
+				<p><span>Cost: </span>{{isFree}}</p>
 			</div>
 			<div class="contact">
-				<h4>Phone: </h4>
-				<p>{{phone}}</p>
-				<h4>Website: </h4>
-				<p>{{website}}</p>
-				<h4>Email:</h4>
-				<p>{{email}}</p>
+				<p><span>Phone: </span>{{phone}}</p>
+				<p><span>Website: </span>{{website}}</p>
+				<p><span>Email: </span>{{email}}</p>
 			</div>
 		</div>
 	</script>
 	
 </head>
 <body>
-	<h2>There are <span></span> events happening today!</h2>
-	<form>
-		<input type="checkbox" id="free">
-		<label for="free">Free</label>
+	<div class="header">
+		<h1>TORONTO <span>FESTIVALS</span></h1>
+	</div>
+	<div class="wrapper main" style="margin-top: 250px">
+		<h2>There are <span></span> events happening today!</h2>
+		<form>
+			<!-- <input type="checkbox" id="free" value="Free">
+			<label for="free">Free</label> -->
 
-		<input type="checkbox" id="accessible">
-		<label for="accessible">Accessible Venues</label>
+			<input type="checkbox" id="accessible" value="fa-wheelchair-alt">
+			<label for="accessible">Accessible Venues</label>
 
-		<input type="checkbox" id="paid-parking">
-		<label for="paid-parking">Paid Parking</label>
+			<input type="checkbox" id="paid-parking" value="fa-product-hunt">
+			<label for="paid-parking">Paid Parking</label>
 
-		<input type="checkbox" id="food">
-		<label for="food">Onsite Food and Beverages</label>
+			<input type="checkbox" id="food" value="fa-cutlery">
+			<label for="food">Onsite Food and Beverages</label>
 
-		<input type="checkbox" id="washrooms">
-		<label for="washrooms">Public Washrooms</label>
+			<input type="checkbox" id="washrooms" value="fa-shower">
+			<label for="washrooms">Public Washrooms</label>
 
-		<input type="checkbox" id="bike-racks">
-		<label for="bike-racks">Bike Racks</label>
+			<input type="checkbox" id="bike-racks" value="fa-bicycle">
+			<label for="bike-racks">Bike Racks</label>
 
-		<input type="submit" value="Submit">
-	</form>
-	<main class="wrapper">
-		<ul class="main-content">
-			<!-- Event list goes here -->
-		</ul>
-	</main>
-
+			<input type="submit" value="Submit">
+		</form>
+		<main>
+			<ul class="main-content">
+				<!-- Event list goes here -->
+			</ul>
+		</main>
+	</div>
 	<div id="myModal" class="modal">
 		
 		
