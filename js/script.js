@@ -241,7 +241,7 @@ festivals.filteredArray = function(val){
 	});
 	console.log(filteredArray);
 }
-
+//header text effect
 festivals.header = function(){
 	var text = ['EVENTS', 'FESTIVALS'];
 	var counter = 0;
@@ -255,14 +255,14 @@ festivals.header = function(){
 			counter = 0;
 	}
 }
-
+//scrollable header
 festivals.headerScroll = function(){
 	$(window).on("scroll", function(e) {
-		if ($(window).scrollTop() ) {
+		if ($(window).scrollTop() ){
 			$(".header").fadeOut(500);
 			$(".main").css('margin-top', '150px');
 		}
-		else {
+		else{
 			$(".header").fadeIn(500);
 			$(".main").css('margin-top', '250px');
 		}

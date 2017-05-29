@@ -9,6 +9,8 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 body{
 	font-family: 'Crimson Text';
 	font-size: 1.2em;
+	background-color: #DCE4F9;
+	color: #969696;
 }
 .wrapper{
 	max-width: 1200px;
@@ -23,15 +25,16 @@ body{
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #00e0af;
+	background-color: #5F7FE6;
 	color: #fff;
-	font-size: 50px;
+	font-size: 30px;
 }
 .header span{
 	margin-left: 20px;
-	width: 500px;
+	width: 300px;
 	display: inline-block;
 	-webkit-animation-duration: 3s;
+	border: 1px solid red;
 }
 a:visited{
   color: inherit;
@@ -59,9 +62,13 @@ ul.features li i{
 	font-size: 18px;
 }
 .event-container{
-	width: 33.33%;
-	margin-bottom: 20px;
+	width: calc(33.33% - 20px);
+	margin: 10px;
 	padding: 20px;
+	background-color: #FBFcfd;
+}
+.event-container h3{
+	color: #5F7FE6;;
 }
 form{
 	margin: 20px 0;
@@ -92,9 +99,9 @@ form{
 	margin-right: 10px;
 }
 .modal-content h4{
-	background-color: #00e0af;
+	background-color: #5F7FE6;
 	color: #fff;
-	padding: 5px;
+	padding: 10px;
 }
 
 /* The Close Button */
