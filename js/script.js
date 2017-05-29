@@ -96,6 +96,7 @@ festivals.getItemsToDisplayData = function(res){
 						counter++;
 						firstObjectOfArray = false;
 					} 
+
 					// if the event name of the previous object is not equal to the event name of the next object, then push into array
 					else if(festivals.eventsArray[counter - 1].eventName !== event.eventName){
 
